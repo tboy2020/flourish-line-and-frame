@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Line &amp; Frame — Where Fashion Meets Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#17233f;        /* blueprint navy — architecture */
+    --ink-soft:#31405f;
+    --paper:#f0ebe0;      /* vellum / drafting paper */
+    --paper-deep:#e7e1d3;
+    --rose:#a9707a;       /* dusty rose — fashion */
+    --rose-soft:#c69ba2;
+    --brass:#b28a4c;      /* aged brass — scripture */
+    --brass-soft:#cdae7d;
+    --text:#28303f;
+    --line:rgba(23,35,63,0.12);
+    --line-strong:rgba(23,35,63,0.22);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background-color:var(--paper);
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:28px 28px;
+    background-position:center top;
+    color:var(--text);
+    font-family:"Inter", system-ui, sans-serif;
+    font-size:17px;
+    line-height:1.72;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .sheet{
+    max-width:940px;
+    margin:0 auto;
+    background:rgba(240,235,224,0.86);
+    border-left:1px solid var(--line-strong);
+    border-right:1px solid var(--line-strong);
+    box-shadow:0 0 60px rgba(23,35,63,0.06);
+  }
+
+  .pad{padding:0 clamp(24px,6vw,84px);}
+
+  /* ---------- drafting labels ---------- */
+  .fig{
+    font-family:"Saira Condensed", sans-serif;
+    font-weight:600;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    font-size:12px;
+    color:var(--rose);
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+  }
+  .fig::before{
+    content:"";
+    width:34px;height:1px;background:var(--rose);display:inline-block;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding-top:clamp(48px,8vw,96px);
+    padding-bottom:clamp(36px,5vw,56px);
+    border-bottom:1px solid var(--line-strong);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .eyebrow{
+    font-family:"Saira Condensed",sans-serif;
+    letter-spacing:0.42em;
+    text-transform:uppercase;
+    font-size:12.5px;
+    font-weight:500;
+    color:var(--ink-soft);
+    margin-bottom:26px;
+  }
+  .hero h1{
+    font-family:"Saira Condensed",sans-serif;
+    font-weight:700;
+    line-height:0.94;
+    letter-spacing:-0.005em;
+    font-size:clamp(46px,10vw,104px);
+    margin:0;
+    color:var(--ink);
+    text-transform:uppercase;
+  }
+  .hero h1 em{
+    font-family:"Fraunces",serif;
+    font-style:italic;
+    font-weight:400;
+    text-transform:none;
+    color:var(--rose);
+    letter-spacing:normal;
+  }
+  .thesis{
+    font-family:"Fraunces",serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(19px,2.6vw,25px);
+    line-height:1.5;
+    color:var(--ink-soft);
+    max-width:30ch;
+    margin:30px 0 0;
+  }
+
+  /* ---------- signature drawing ---------- */
+  .plate{
+    margin-top:44px;
+    border:1px solid var(--line-strong);
+    background:
+      linear-gradient(rgba(23,35,63,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(23,35,63,0.05) 1px, transparent 1px);
+    background-size:22px 22px;
+    background-color:rgba(247,244,236,0.6);
+    padding:22px;
+    position:relative;
+  }
+  .plate svg{display:block;width:100%;height:auto;}
+  .plate .caption{
+    display:flex;justify-content:space-between;align-items:baseline;
+    font-family:"Saira Condensed",sans-serif;
+    letter-spacing:0.18em;text-transform:uppercase;font-size:11px;
+    color:var(--ink-soft);margin-top:14px;padding-top:12px;
+    border-top:1px solid var(--line);
+  }
+
+  /* ---------- generic section ---------- */
+  section{padding-top:clamp(48px,7vw,80px);padding-bottom:clamp(20px,3vw,36px);}
+  h2{
+    font-family:"Saira Condensed",sans-serif;
+    font-weight:700;text-transform:uppercase;
+    font-size:clamp(30px,5vw,48px);
+    line-height:1.0;letter-spacing:-0.01em;
+    color:var(--ink);margin:14px 0 0;
+  }
+  .lead{
+    font-size:19px;color:var(--ink-soft);max-width:60ch;margin:22px 0 0;
+  }
+  p{margin:18px 0 0;}
+  strong{color:var(--ink);font-weight:600;}
+
+  /* ---------- scripture ---------- */
+  .scripture{
+    margin:40px 0;
+    padding:26px 30px;
+    border-left:3px solid var(--brass);
+    background:linear-gradient(90deg, rgba(178,138,76,0.09), rgba(178,138,76,0));
+  }
+  .scripture p{
+    font-family:"Fraunces",serif;font-style:italic;font-weight:400;
+    font-size:clamp(18px,2.4vw,22px);line-height:1.55;color:var(--ink);margin:0;
+  }
+  .scripture .ref{
+    display:block;margin-top:14px;
+    font-family:"Saira Condensed",sans-serif;font-style:normal;
+    letter-spacing:0.24em;text-transform:uppercase;font-size:12px;
+    color:var(--brass);font-weight:600;
+  }
+
+  /* ---------- skills grid ---------- */
+  .grid{
+    display:grid;grid-template-columns:repeat(2,1fr);
+    gap:1px;background:var(--line-strong);
+    border:1px solid var(--line-strong);margin-top:38px;
+  }
+  .cell{
+    background:var(--paper);padding:26px 26px 30px;
+  }
+  .cell .no{
+    font-family:"Saira Condensed",sans-serif;font-weight:600;
+    font-size:13px;letter-spacing:0.2em;color:var(--rose);
+  }
+  .cell h3{
+    font-family:"Saira Condensed",sans-serif;font-weight:600;
+    text-transform:uppercase;letter-spacing:0.01em;
+    font-size:22px;color:var(--ink);margin:8px 0 0;line-height:1.05;
+  }
+  .cell .pair{
+    display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 12px;
+    font-family:"Saira Condensed",sans-serif;font-size:12.5px;
+    letter-spacing:0.06em;text-transform:uppercase;
+  }
+  .tag{padding:3px 10px;border:1px solid var(--line-strong);border-radius:2px;color:var(--ink-soft);}
+  .tag.arch{border-color:rgba(23,35,63,0.4);color:var(--ink);}
+  .tag.fash{border-color:var(--rose-soft);color:var(--rose);}
+  .cell p{font-size:15.5px;line-height:1.6;margin:6px 0 0;color:var(--text);}
+
+  /* ---------- career list ---------- */
+  .paths{margin-top:36px;border-top:1px solid var(--line-strong);}
+  .path{
+    display:grid;grid-template-columns:64px 1fr;gap:22px;
+    padding:24px 0;border-bottom:1px solid var(--line);align-items:start;
+  }
+  .path .idx{
+    font-family:"Saira Condensed",sans-serif;font-weight:700;
+    font-size:30px;color:var(--rose);line-height:1;padding-top:2px;
+  }
+  .path h3{
+    font-family:"Saira Condensed",sans-serif;font-weight:600;text-transform:uppercase;
+    font-size:21px;color:var(--ink);margin:0;letter-spacing:0.01em;
+  }
+  .path p{font-size:15.5px;margin:6px 0 0;color:var(--text);max-width:62ch;}
+
+  /* ---------- two enterprises ---------- */
+  .venture{
+    display:grid;grid-template-columns:1fr 1fr;gap:1px;
+    background:var(--line-strong);border:1px solid var(--line-strong);margin-top:36px;
+  }
+  .venture > div{background:var(--paper);padding:30px;}
+  .venture .label{
+    font-family:"Saira Condensed",sans-serif;letter-spacing:0.24em;
+    text-transform:uppercase;font-size:12px;font-weight:600;
+  }
+  .venture .a .label{color:var(--ink);}
+  .venture .b .label{color:var(--rose);}
+  .venture h3{
+    font-family:"Saira Condensed",sans-serif;font-weight:700;text-transform:uppercase;
+    font-size:26px;margin:10px 0 0;color:var(--ink);line-height:1;
+  }
+  .venture p{font-size:15.5px;margin:12px 0 0;}
+  .bridge{
+    margin-top:30px;padding:26px 30px;border:1px dashed var(--brass);
+    background:rgba(178,138,76,0.05);
+  }
+  .bridge .label{
+    font-family:"Saira Condensed",sans-serif;letter-spacing:0.24em;text-transform:uppercase;
+    font-size:12px;font-weight:600;color:var(--brass);
+  }
+  .bridge p{margin:10px 0 0;font-size:16px;}
+
+  /* ---------- closing ---------- */
+  .closing{
+    padding:clamp(52px,8vw,88px) 0 clamp(40px,6vw,64px);
+    text-align:center;border-top:1px solid var(--line-strong);
+  }
+  .closing .blessing{
+    font-family:"Fraunces",serif;font-style:italic;font-size:clamp(20px,3vw,27px);
+    line-height:1.5;color:var(--ink);max-width:34ch;margin:0 auto;
+  }
+  .monogram{
+    width:54px;height:54px;margin:0 auto 26px;border:1.5px solid var(--brass);
+    border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-family:"Saira Condensed",sans-serif;font-weight:700;color:var(--brass);
+    letter-spacing:0.05em;font-size:20px;
+  }
+  footer{
+    text-align:center;padding:30px 0 46px;
+    border-top:1px solid var(--line);
+  }
+  footer .glory{
+    font-family:"Fraunces",serif;font-style:italic;color:var(--brass);font-size:16px;
+  }
+  footer .studio{
+    font-family:"Saira Condensed",sans-serif;letter-spacing:0.3em;text-transform:uppercase;
+    font-size:11px;color:var(--ink-soft);margin-top:10px;
+  }
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  @media (max-width:640px){
+    .grid,.venture{grid-template-columns:1fr;}
+    .path{grid-template-columns:44px 1fr;gap:16px;}
+    .path .idx{font-size:24px;}
+  }
+
+  @media print{
+    body{background:#fff;font-size:12pt;}
+    .sheet{box-shadow:none;border:none;max-width:none;background:#fff;}
+    .reveal{opacity:1;transform:none;}
+    .scripture,.bridge{break-inside:avoid;}
+    .cell,.path,.venture>div{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- ================= HERO ================= -->
+  <header class="hero pad">
+    <div class="eyebrow reveal">A Folio &nbsp;·&nbsp; For Flourish</div>
+    <h1 class="reveal">Line<br><em>&amp;</em> Frame</h1>
+    <p class="thesis reveal">A dress is architecture for the body. A building is a garment for space. You have not chosen between two worlds — you have found the seam where they meet.</p>
+
+    <div class="plate reveal">
+      <svg viewBox="0 0 900 340" role="img" aria-label="A gown drawn as a technical fashion flat beside a building elevation, sharing one ground line and axis.">
+        <!-- ground line -->
+        <line x1="40" y1="300" x2="860" y2="300" stroke="#17233f" stroke-width="1.4"/>
+        <!-- centre axis -->
+        <line x1="450" y1="24" x2="450" y2="316" stroke="#b28a4c" stroke-width="1" stroke-dasharray="3 5"/>
+        <text x="458" y="34" fill="#b28a4c" font-family="Saira Condensed, sans-serif" font-size="12" letter-spacing="2">AXIS</text>
+
+        <!-- ===== LEFT: gown as technical flat ===== -->
+        <g stroke="#17233f" stroke-width="1.6" fill="none">
+          <!-- shoulders/bodice -->
+          <path d="M150 78 L210 66 L270 78 L262 150 L158 150 Z"/>
+          <!-- neckline -->
+          <path d="M196 68 Q210 86 224 68" stroke="#a9707a" stroke-width="1.3"/>
+          <!-- waist seam -->
+          <line x1="158" y1="150" x2="262" y2="150" stroke="#a9707a" stroke-width="1.2"/>
+          <!-- A-line skirt -->
+          <path d="M158 150 L96 300 L324 300 L262 150"/>
+          <!-- centre + dart lines -->
+          <line x1="210" y1="66" x2="210" y2="300" stroke="#a9707a" stroke-width="0.9" stroke-dasharray="4 4"/>
+          <path d="M182 150 L172 210" stroke="#a9707a" stroke-width="0.9"/>
+          <path d="M238 150 L248 210" stroke="#a9707a" stroke-width="0.9"/>
+        </g>
+        <!-- dimension tick left -->
+        <g stroke="#17233f" stroke-width="0.8">
+          <line x1="70" y1="66" x2="70" y2="300"/>
+          <line x1="66" y1="66" x2="74" y2="66"/>
+          <line x1="66" y1="300" x2="74" y2="300"/>
+        </g>
+        <text x="210" y="326" text-anchor="middle" fill="#17233f" font-family="Saira Condensed, sans-serif" font-size="12" letter-spacing="2">FLAT PATTERN · THE GARMENT</text>
+
+        <!-- ===== RIGHT: building elevation ===== -->
+        <g stroke="#17233f" stroke-width="1.6" fill="none">
+          <!-- tower body -->
+          <rect x="590" y="90" width="180" height="210"/>
+          <!-- pitched crown -->
+          <path d="M590 90 L680 44 L770 90"/>
+          <!-- floor lines -->
+          <line x1="590" y1="140" x2="770" y2="140" stroke="#31405f" stroke-width="0.9"/>
+          <line x1="590" y1="190" x2="770" y2="190" stroke="#31405f" stroke-width="0.9"/>
+          <line x1="590" y1="240" x2="770" y2="240" stroke="#31405f" stroke-width="0.9"/>
+          <!-- entry -->
+          <rect x="660" y="256" width="40" height="44" stroke="#a9707a" stroke-width="1.2"/>
+          <!-- window mullions -->
+          <line x1="680" y1="90" x2="680" y2="256" stroke="#31405f" stroke-width="0.7" stroke-dasharray="4 4"/>
+        </g>
+        <!-- dimension tick right -->
+        <g stroke="#17233f" stroke-width="0.8">
+          <line x1="830" y1="44" x2="830" y2="300"/>
+          <line x1="826" y1="44" x2="834" y2="44"/>
+          <line x1="826" y1="300" x2="834" y2="300"/>
+        </g>
+        <text x="680" y="326" text-anchor="middle" fill="#17233f" font-family="Saira Condensed, sans-serif" font-size="12" letter-spacing="2">ELEVATION · THE BUILDING</text>
+      </svg>
+      <div class="caption">
+        <span>Fig. 01 — One drawing, two disciplines</span>
+        <span>For Flourish</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= OPENING ================= -->
+  <section class="pad reveal">
+    <span class="fig">Fig. 02 — You are on the right track</span>
+    <h2>Two crafts, one gift</h2>
+    <p class="lead">There is a quiet worry that loving fashion and being drawn to architecture means you must eventually pick one and abandon the other. You don't. They are not rivals competing for your future — they are two dialects of a single language you already speak: <strong>the language of giving form to human life.</strong></p>
+    <p>Every dress you sketch and every building you admire begin the same way — with a line on paper that decides how a person will be held, how they will move, and how they will be seen. The skills that make one beautiful are, almost exactly, the skills that make the other stand. To pursue architecture is not to leave fashion behind. It is to study the same craft at a larger scale.</p>
+
+    <div class="scripture">
+      <p>“And I have filled him with the spirit of God, in wisdom, and in understanding, and in knowledge, and in all manner of workmanship, to devise cunning works, to work in gold, and in silver, and in brass.”</p>
+      <span class="ref">Exodus 31:3–4 (KJV)</span>
+    </div>
+    <p>Before there were design schools, Scripture already named it: a Spirit-given ability to <em>devise</em> — to imagine a thing and then bring it into being with skilled hands. That gift is not divided by category. It flows into fabric and it flows into stone.</p>
+  </section>
+
+  <!-- ================= SHARED SKILLS ================= -->
+  <section class="pad reveal">
+    <span class="fig">Fig. 03 — The shared toolkit</span>
+    <h2>Skills that carry across</h2>
+    <p class="lead">These aren't loose similarities. Each one is a discipline a fashion designer and an architect are literally both trained to master — the same idea, dressed in different materials.</p>
+
+    <div class="grid">
+      <div class="cell">
+        <span class="no">01</span>
+        <h3>Proportion &amp; the human scale</h3>
+        <div class="pair"><span class="tag fash">Fit to the body</span><span class="tag arch">Human-scaled space</span></div>
+        <p>Both begin at the body — how tall, how wide, how a person reaches, sits, and breathes. Get proportion wrong and a dress pinches or a room feels off; get it right and it feels made for you.</p>
+      </div>
+      <div class="cell">
+        <span class="no">02</span>
+        <h3>Structure &amp; support</h3>
+        <div class="pair"><span class="tag fash">Seams · darts · boning</span><span class="tag arch">Beams · loads · footing</span></div>
+        <p>A gown holds its shape through hidden structure, exactly as a building does through its frame. Both fields ask the same question: what unseen support lets this beautiful thing stand up?</p>
+      </div>
+      <div class="cell">
+        <span class="no">03</span>
+        <h3>Material &amp; how it behaves</h3>
+        <div class="pair"><span class="tag fash">Drape · weight · weave</span><span class="tag arch">Concrete · glass · timber</span></div>
+        <p>Mastery in either field is knowing your material intimately — how silk falls, how steel spans, how each one catches light. The craft is respecting what the material wants to do.</p>
+      </div>
+      <div class="cell">
+        <span class="no">04</span>
+        <h3>Technical drawing</h3>
+        <div class="pair"><span class="tag fash">Flat pattern</span><span class="tag arch">Plan &amp; elevation</span></div>
+        <p>A sewing pattern and an architectural elevation are the same act — a flat drawing that becomes a three-dimensional form. Learn to draw one and your eye is already trained for the other.</p>
+      </div>
+      <div class="cell">
+        <span class="no">05</span>
+        <h3>Silhouette &amp; line</h3>
+        <div class="pair"><span class="tag fash">The profile of a look</span><span class="tag arch">The skyline of a form</span></div>
+        <p>Both crafts obsess over the outline a thing cuts against space. A designer's signature silhouette and an architect's iconic profile come from the very same instinct for line.</p>
+      </div>
+      <div class="cell">
+        <span class="no">06</span>
+        <h3>Prototype before you commit</h3>
+        <div class="pair"><span class="tag fash">The muslin toile</span><span class="tag arch">The scale model</span></div>
+        <p>Neither a couturier nor an architect builds the real thing first. They test in a cheaper draft — a muslin mock-up, a study model — refining until the idea is proven. Same discipline, same patience.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CREATIVE OVERLAP ================= -->
+  <section class="pad reveal">
+    <span class="fig">Fig. 04 — Where they truly meet</span>
+    <h2>The deeper kinship</h2>
+    <p class="lead">Beyond the shared tools, fashion and architecture answer the same human need: to be sheltered, adorned, and dignified by the things we make.</p>
+    <p>Fashion is architecture at the scale of a single person. Architecture is fashion at the scale of a city. Both take the raw fact of a human body needing to be clothed and housed, and turn it into <strong>beauty with a purpose</strong>. Neither is content with only pretty or only useful — the whole art is holding those two together.</p>
+    <p>This crossover is not a theory; the design world lives it. Some of the most celebrated architects have designed shoes, furniture, and couture, and some of the boldest fashion houses build their collections on architectural geometry and engineered materials. The runway and the drafting table have always borrowed from each other. Your instinct to hold both is not unusual for a serious designer — it is a sign of one.</p>
+
+    <div class="scripture">
+      <p>“Through wisdom is an house builded; and by understanding it is established: and by knowledge shall the chambers be filled with all precious and pleasant riches.”</p>
+      <span class="ref">Proverbs 24:3–4 (KJV)</span>
+    </div>
+    <p>Notice how this single verse holds your whole calling: <em>wisdom builds the house</em> — that is the architecture; and it fills the chambers <em>with all precious and pleasant riches</em> — that is the adornment, the beauty, the fashion. Structure and beauty, named in one breath, from one gift.</p>
+  </section>
+
+  <!-- ================= CAREER PATHS ================= -->
+  <section class="pad reveal">
+    <span class="fig">Fig. 05 — Real doors that open</span>
+    <h2>Career paths that blend both</h2>
+    <p class="lead">These are established, hire-able professions — not compromises. Each one rewards exactly the double instinct you already have.</p>
+
+    <div class="paths">
+      <div class="path"><div class="idx">A</div><div>
+        <h3>Interior architecture &amp; design</h3>
+        <p>The most direct bridge: shaping the spaces people live and work in, where fabric, texture, light, and form all matter. A fashion eye for material and mood is a genuine advantage here.</p>
+      </div></div>
+      <div class="path"><div class="idx">B</div><div>
+        <h3>Retail &amp; boutique concept design</h3>
+        <p>Designing the stores, showrooms, and flagships where fashion is sold. It is architecture in service of a brand — the space itself becomes part of the garment's story.</p>
+      </div></div>
+      <div class="path"><div class="idx">C</div><div>
+        <h3>Set, exhibition &amp; experiential design</h3>
+        <p>Building the worlds behind runway shows, brand installations, and exhibitions. This is where spatial design and fashion meet most theatrically, and it is a real and growing industry.</p>
+      </div></div>
+      <div class="path"><div class="idx">D</div><div>
+        <h3>Textile &amp; material innovation</h3>
+        <p>Engineering fabrics and surfaces — including architectural textiles used in facades and canopies. Sustainable and technical materials are one of the fastest-moving fields in both worlds.</p>
+      </div></div>
+      <div class="path"><div class="idx">E</div><div>
+        <h3>Product &amp; accessory design</h3>
+        <p>Handbags, footwear, furniture, and wearables all sit exactly between fashion and structure. Many designers who love both build careers giving three-dimensional form to objects people carry and use.</p>
+      </div></div>
+      <div class="path"><div class="idx">F</div><div>
+        <h3>Fashion founder with a spatial signature</h3>
+        <p>Or she leads her own label — and her architectural sense shapes its boutiques, its shows, its packaging, and its whole visual identity. The double gift becomes the brand's distinct edge.</p>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ================= TWO ENTERPRISES ================= -->
+  <section class="pad reveal">
+    <span class="fig">Fig. 06 — Two enterprises, one studio</span>
+    <h2>A business built on both</h2>
+    <p class="lead">Here is the vision worth holding onto: these need not stay two interests. They can become two connected ventures under one creative house — each one strengthening the other.</p>
+
+    <div class="venture">
+      <div class="a">
+        <span class="label">Enterprise I · The Atelier</span>
+        <h3>The Fashion House</h3>
+        <p>Her designs — couture, ready-to-wear, or accessories. Her name, her line, her muse. This is the intimate craft, dressed on the human body.</p>
+      </div>
+      <div class="b">
+        <span class="label">Enterprise II · The Studio</span>
+        <h3>The Design Practice</h3>
+        <p>Interiors, boutiques, and event spaces for clients — the same eye working at the scale of rooms and buildings. Steady, project-based, and always in demand.</p>
+      </div>
+    </div>
+
+    <div class="bridge">
+      <span class="label">The seam that joins them</span>
+      <p>The fashion house needs beautiful boutiques, showrooms, and runway sets — and the design practice builds them. The design practice needs a signature, an unmistakable aesthetic — and the fashion house gives it one. <strong>One design language, one name, two revenue streams that feed each other.</strong> The boutique she designs sells the dresses she makes; the dresses she makes announce the studio that built the room.</p>
+    </div>
+    <p>That is not two careers pulling her apart. It is one identity with two hands — and, in time, a family of enterprises that hold together because they were always drawing from the same well.</p>
+  </section>
+
+  <!-- ================= CLOSING ================= -->
+  <section class="closing pad reveal">
+    <div class="monogram">L&amp;F</div>
+    <p class="blessing">Flourish — you were given an eye that sees both the thread and the tower. Steward it, sharpen it, and let it build.</p>
+    <div class="scripture" style="text-align:left;margin-top:40px;">
+      <p>“And let the beauty of the LORD our God be upon us: and establish thou the work of our hands upon us; yea, the work of our hands establish thou it.”</p>
+      <span class="ref">Psalm 90:17 (KJV)</span>
+    </div>
+  </section>
+
+  <footer>
+    <div class="glory">Glory to God alone.</div>
+    <div class="studio">Made for Flourish</div>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var items = document.querySelectorAll(".reveal");
+  if(!("IntersectionObserver" in window)){
+    for(var i=0;i<items.length;i++){ items[i].classList.add("in"); }
+    return;
+  }
+  var obs = new IntersectionObserver(function(entries){
+    for(var j=0;j<entries.length;j++){
+      if(entries[j].isIntersecting){
+        entries[j].target.classList.add("in");
+        obs.unobserve(entries[j].target);
+      }
+    }
+  }, { threshold:0.12 });
+  for(var k=0;k<items.length;k++){ obs.observe(items[k]); }
+})();
+</script>
+</body>
+</html>
